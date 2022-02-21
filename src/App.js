@@ -9,7 +9,7 @@ const getRandomCoordinates = () => {
   let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
   let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2;
   return [x, y];
-};
+}
 
 const initialState = {
   food: getRandomCoordinates(),
@@ -17,11 +17,12 @@ const initialState = {
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
-    [2, 0],
-  ],
-};
+    [2, 0]
+  ]
+}
 
 class App extends Component {
+
   state = initialState;
 
   componentDidMount() {
@@ -51,7 +52,7 @@ class App extends Component {
         this.setState({ direction: 'RIGHT' });
         break;
     }
-  };
+  }
 
   moveSnake = () => {
     let dots = [...this.state.snakeDots];
@@ -75,8 +76,8 @@ class App extends Component {
     dots.shift();
     this.setState({
       snakeDots: dots,
-    });
-  };
+    })
+  }
 
   checkIfOutOfBorders() {
     let head = this.state.snakeDots[this.state.snakeDots.length - 1];
@@ -93,7 +94,7 @@ class App extends Component {
       if (head[0] == dot[0] && head[1] == dot[1]) {
         this.onGameOver();
       }
-    });
+    })
   }
 
   checkIfEat() {
@@ -101,8 +102,8 @@ class App extends Component {
     let food = this.state.food;
     if (head[0] == food[0] && head[1] == food[1]) {
       this.setState({
-        food: getRandomCoordinates(),
-      });
+        food: getRandomCoordinates()
+      })
       this.enlargeSnake();
       this.increaseSpeed();
     }
@@ -113,14 +114,14 @@ class App extends Component {
     newSnake.unshift([]);
     this.setState({
       snakeDots: newSnake,
-    });
+    })
   }
 
   increaseSpeed() {
     if (this.state.speed > 10) {
       this.setState({
-        speed: this.state.speed - 10,
-      });
+        speed: this.state.speed - 10
+      })
     }
   }
 
